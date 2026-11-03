@@ -1,0 +1,49 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-only -->
+<!-- SPDX-FileCopyrightText: 2026 FrameDepth contributors -->
+<meta charset="utf-8">
+<title>FrameDepth</title>
+<style>
+  :root { color-scheme: light dark; --muted: #888; --ok: #2a9d4a; --bad: #d0443c; }
+  body { font: 15px system-ui, sans-serif; width: 320px; margin: 14px; }
+  h1 { font-size: 17px; margin: 0 0 12px; }
+  .row { display: flex; align-items: center; justify-content: space-between; margin: 12px 0; gap: 10px; }
+  .toggle { font-size: 16px; padding: 10px 14px; border-radius: 10px; border: 0; cursor: pointer; width: 100%; }
+  .toggle.on { background: var(--ok); color: #fff; }
+  .toggle.off { background: #444; color: #fff; }
+  input[type=range] { flex: 1; }
+  .val { width: 48px; text-align: right; font-variant-numeric: tabular-nums; }
+  .hint, .status { color: var(--muted); font-size: 13px; line-height: 1.4; }
+  .status b.ok { color: var(--ok); } .status b.bad { color: var(--bad); }
+  details { margin: 12px 0; } summary { cursor: pointer; }
+  details label, label.check { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .tools { display: flex; gap: 8px; margin: -4px 0 4px; }
+  .tools[hidden] { display: none; }
+  .tools button { flex: 1; font-size: 13px; padding: 5px 8px; border-radius: 6px; border: 1px solid var(--muted); background: transparent; color: inherit; cursor: pointer; }
+  .tools button:disabled { opacity: 0.4; cursor: default; }
+  #help { white-space: pre-line; }
+</style>
+<h1 data-i18n="appName">FrameDepth</h1>
+<p class="status" id="warn" hidden></p>
+<button id="toggle" class="toggle off"></button>
+<!-- what is going on, at the top: the popup is at most 600 px tall and the
+     status at the bottom was out of view (review 2026-11-01) -->
+<p class="status" id="status"></p>
+<p class="hint" id="version"></p>
+<p class="hint" data-i18n="intro"></p>
+<div class="row"><label for="preset" data-i18n="preset"></label><select id="preset"><option value="custom" data-i18n="presetCustom"></option><option value="movie" data-i18n="presetMovie"></option><option value="anime" data-i18n="presetAnime"></option><option value="game" data-i18n="presetGame"></option><option value="photo" data-i18n="presetPhoto"></option></select></div>
+<p class="hint" data-i18n="presetHelp"></p>
+<div class="tools" id="presetTools" hidden><button id="presetSave" data-i18n="presetSave"></button><button id="presetRestore" data-i18n="presetRestore"></button></div>
+<p class="hint" id="presetNote" hidden></p>
+<div class="row"><label for="strength" data-i18n="strength"></label><input id="strength" type="range" min="0" max="3" step="0.05"><span class="val" id="strengthVal"></span></div>
+<div class="row"><label for="popout" data-i18n="popout"></label><input id="popout" type="range" min="0" max="100" step="1"><span class="val" id="popoutVal"></span></div>
+<div class="row"><label for="smooth" data-i18n="smooth"></label><input id="smooth" type="range" min="0" max="8" step="1"><span class="val" id="smoothVal"></span></div>
+<div class="row"><label for="sharpen" data-i18n="sharpen"></label><input id="sharpen" type="range" min="0" max="2" step="0.1"><span class="val" id="sharpenVal"></span></div>
+<div class="row"><label for="detail" data-i18n="detail"></label><select id="detail"><option value="0" data-i18n="detailNormal"></option><option value="2" data-i18n="detailHigh"></option><option value="1" data-i18n="detailGpu"></option></select></div>
+<p class="hint" data-i18n="detailHelp"></p>
+<label class="check"><input id="scrollflat" type="checkbox"><span data-i18n="scrollflat"></span></label>
+<p class="hint" data-i18n="scrollflatHelp"></p>
+<label class="check"><input id="subtitles" type="checkbox"><span data-i18n="subtitles"></span></label>
+<p class="hint" data-i18n="subtitlesHelp"></p>
+<details><summary data-i18n="helpTitle"></summary><p class="hint" id="help" data-i18n="help"></p></details>
+<script src="popup.js"></script>

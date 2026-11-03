@@ -1,0 +1,13 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-only -->
+<!-- SPDX-FileCopyrightText: 2026 FrameDepth contributors -->
+<meta charset="utf-8">
+<title>FrameDepth gallery scroll test</title>
+<!-- A page of thumbnails taller than the window, for scrolling a gallery
+     (drive_chrome.py FD_SCROLL): ?src=IMAGE (default pic.svg) -->
+<style> body { margin: 0; background: #222; display: grid; grid-template-columns: repeat(3, 400px); gap: 16px; } img { width: 400px; height: 225px; } </style>
+<body>
+<script>
+  const src = new URLSearchParams(location.search).get('src') || 'pic.svg';
+  for (let i = 0; i < 30; i++) { const img = document.createElement('img'); img.src = src; document.body.append(img); }
+</script>

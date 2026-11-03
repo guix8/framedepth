@@ -1,0 +1,12 @@
+# Fetched and built dependencies, build output, release archives
+build-deps/
+build/
+dist/
+__pycache__/
+# never commit an extension private key or a packed extension
+*.pem
+*.crx
+# local working notes and settings (not published)
+CLAUDE.local.md
+notes/
+.claude/

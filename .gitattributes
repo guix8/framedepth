@@ -1,0 +1,9 @@
+# Everything here runs on the headset (Linux): keep LF line endings in the
+# working copy whatever core.autocrlf says.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.gif binary
+*.svg text
+*.bin binary
+*.tflite binary

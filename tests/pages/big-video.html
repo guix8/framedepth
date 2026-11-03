@@ -1,0 +1,17 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-only -->
+<!-- SPDX-FileCopyrightText: 2026 FrameDepth contributors -->
+<meta charset="utf-8">
+<title>big inner</title>
+<!-- The framed page: a 960x540 video (canvas stream) at 20,30, for offscreen-iframe-test.html -->
+<style>
+  body { margin: 0; background: #ddd; }
+  video { position: absolute; left: 20px; top: 30px; width: 960px; height: 540px; }
+</style>
+<video id="v" muted autoplay></video>
+<script>
+  const c = document.createElement('canvas'); c.width = 960; c.height = 540;
+  const g = c.getContext('2d'); let f = 0;
+  setInterval(() => { g.fillStyle = `hsl(${f++ % 360},60%,50%)`; g.fillRect(0, 0, 960, 540); }, 50);
+  const v = document.getElementById('v'); v.srcObject = c.captureStream(20); v.play();
+</script>

@@ -1,0 +1,34 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-only -->
+<!-- SPDX-FileCopyrightText: 2026 FrameDepth contributors -->
+<meta charset="utf-8">
+<title>Shadow DOM video test</title>
+<!-- A player as a web component: the video and its control bar live in the
+     element's open shadow root, which document.querySelectorAll does not
+     reach. The extension should find the video (view on, its rectangle) and
+     keep the bar flat (one ui rectangle). -->
+<style>
+  body { font: 14px system-ui; margin: 16px; background: #fff; }
+</style>
+<p>A video inside a custom element's shadow root.</p>
+<fd-player></fd-player>
+<script>
+customElements.define('fd-player', class extends HTMLElement {
+  constructor() {
+    super();
+    const root = this.attachShadow({ mode: 'open' });
+    root.innerHTML = `<style>
+        .box { position: relative; width: 640px; height: 360px; background: #000; }
+        video { width: 100%; height: 100%; display: block; }
+        .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 40px; background: rgba(0,0,0,.6); }
+      </style>
+      <div class="box"><video muted></video><div class="bar"></div></div>`;
+    const c = document.createElement('canvas'); c.width = 640; c.height = 360;
+    const g = c.getContext('2d'); let f = 0;
+    setInterval(() => { g.fillStyle = `hsl(${f++ % 360},60%,50%)`; g.fillRect(0, 0, 640, 360); }, 50);
+    const v = root.querySelector('video');
+    v.srcObject = c.captureStream(20);
+    v.play();
+  }
+});
+</script>

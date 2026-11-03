@@ -1,0 +1,274 @@
+{
+  "appName": {
+    "message": "FrameDepth"
+  },
+  "appDescription": {
+    "message": "非公式。Steam Frame の Chrome で動画や画像をリアルタイムに 3D にします。ヘッドセットに framedepth-companion が必要です。データは端末の外に出ません。"
+  },
+  "commandToggle": {
+    "message": "3D のオン／オフ"
+  },
+  "commandStrengthUp": {
+    "message": "強さを上げる"
+  },
+  "commandStrengthDown": {
+    "message": "強さを下げる"
+  },
+  "commandPopoutUp": {
+    "message": "飛び出しを上げる"
+  },
+  "commandPopoutDown": {
+    "message": "飛び出しを下げる"
+  },
+  "toggleOn": {
+    "message": "3D オン"
+  },
+  "toggleOff": {
+    "message": "3D オフ"
+  },
+  "intro": {
+    "message": "オンにすると、画面でいちばん大きな動画を 3D にします（動画がなければページの主な画像）。ページ内・全画面・iframe のどれでも動きます。ショートカット：Alt+Shift+D でオン／オフ、Alt+Shift+↑／↓ で強さ。ほかは chrome://extensions/shortcuts で設定します。"
+  },
+  "strength": {
+    "message": "強さ"
+  },
+  "popout": {
+    "message": "飛び出し"
+  },
+  "smooth": {
+    "message": "境界ぼかし"
+  },
+  "sharpen": {
+    "message": "シャープ"
+  },
+  "detail": {
+    "message": "奥行きの精度"
+  },
+  "detailNormal": {
+    "message": "標準（おすすめ）"
+  },
+  "detailHigh": {
+    "message": "高（CPU 負荷大）"
+  },
+  "detailGpu": {
+    "message": "最高（写真向け）"
+  },
+  "detailHelp": {
+    "message": "動画には「標準」が向いています。「高」は細い輪郭が少しくっきりしますが、ヘッドセットが熱くなり、60fps の動画がカクつくことがあります。「最高」は写真向けです。YouTube の画質は 1080p で十分で、上げても負荷が増えるだけです。"
+  },
+  "valueOff": {
+    "message": "オフ"
+  },
+  "help": {
+    "message": "強さ：3D の深さ。それぞれの目の画像を最大で幅の何 % ずらすかです。\n飛び出し：高いほど画面の手前に、低いほど奥に置きます（50 で半々）。\n境界ぼかし：高いほど物体の境界のにじみや裂けが減りますが、3D の境目はやわらかくなります。\nシャープ：変換でぼやけた細部を戻します（0 でオフ）。\n奥行きの精度：動画は「標準」。「高」は輪郭が細かくなりますが、負荷と発熱が増えます。「最高」は GPU を使い、写真向けです（切り替え中は 1〜2 秒平面）。\n動画の上の再生ボタンや字幕は自動で見つけ、画面と同じ奥行きに置きます。"
+  },
+  "companionConnected": {
+    "message": "コンパニオン：<b class=\"ok\">接続済み</b>（$MODEL$）",
+    "placeholders": {
+      "MODEL": {
+        "content": "$1"
+      }
+    }
+  },
+  "companionError": {
+    "message": "コンパニオン：<b class=\"bad\">エラー</b> $ERROR$。再起動し（systemctl --user restart framedepth-companion）、続く場合はもう一度インストールしてください（<a href=\"https://github.com/guix8/framedepth/blob/main/README.ja.md#トラブルシューティング\" target=\"_blank\">トラブルシューティング</a>）。10 秒後に再試行します…",
+    "placeholders": {
+      "ERROR": {
+        "content": "$1"
+      }
+    }
+  },
+  "companionConnecting": {
+    "message": "コンパニオン：接続中…"
+  },
+  "companionDisconnected": {
+    "message": "コンパニオン：<b class=\"bad\">未接続</b>。インストールされて動いているか確認してください（<a href=\"https://github.com/guix8/framedepth/blob/main/README.ja.md#トラブルシューティング\" target=\"_blank\">トラブルシューティング</a>）。"
+  },
+  "companionBusy": {
+    "message": "コンパニオン：別の Chrome プロファイルが<b class=\"bad\">使用中</b>。そちらで 3D をオフにするか閉じると、10 秒以内にこちらに切り替わります。"
+  },
+  "companionIdle": {
+    "message": "コンパニオン：3D にする動画や画像を待っています（動画は 200×112 以上、画像は画面の約 5 分の 1 以上か複数枚）"
+  },
+  "viewProblem": {
+    "message": "<b class=\"bad\">問題</b>：$PROBLEM$",
+    "placeholders": {
+      "PROBLEM": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsVideo": {
+    "message": "動画 $VIDEO$ fps のうち $FRAMES$ fps を 3D で描画（読み取り $GRAB$ ms、描画 $WARP$ ms）<br>深度マップ 毎秒 $MAPS$ 枚、モデル $MODEL$ ms、動画より $AGE$ ms 遅れ",
+    "placeholders": {
+      "VIDEO": {
+        "content": "$1"
+      },
+      "FRAMES": {
+        "content": "$2"
+      },
+      "GRAB": {
+        "content": "$3"
+      },
+      "WARP": {
+        "content": "$4"
+      },
+      "MAPS": {
+        "content": "$5"
+      },
+      "MODEL": {
+        "content": "$6"
+      },
+      "AGE": {
+        "content": "$7"
+      }
+    }
+  },
+  "stats": {
+    "message": "3D 表示 $FPS$ fps（読み取り $GRAB$ ms、描画 $WARP$ ms）<br>深度マップ 毎秒 $MAPS$ 枚、モデル $MODEL$ ms、動画より $AGE$ ms 遅れ",
+    "placeholders": {
+      "FPS": {
+        "content": "$1"
+      },
+      "GRAB": {
+        "content": "$2"
+      },
+      "WARP": {
+        "content": "$3"
+      },
+      "MAPS": {
+        "content": "$4"
+      },
+      "MODEL": {
+        "content": "$5"
+      },
+      "AGE": {
+        "content": "$6"
+      }
+    }
+  },
+  "versionMismatch": {
+    "message": "<b class=\"bad\">バージョンが違います</b>：拡張機能 $EXT$、コンパニオン $COMP$。chrome://extensions で FrameDepth を再読み込みし、それでも違えばもう一度インストールしてください。",
+    "placeholders": {
+      "EXT": {
+        "content": "$1"
+      },
+      "COMP": {
+        "content": "$2"
+      }
+    }
+  },
+  "stereoSideBySide": {
+    "message": "3D 動画（左右）なのでそのまま表示しています"
+  },
+  "stereoTopBottom": {
+    "message": "3D 動画（上下）なのでそのまま表示しています"
+  },
+  "subtitles": {
+    "message": "動画内の字幕は平面に"
+  },
+  "scrollflat": {
+    "message": "スクロール中は平面に"
+  },
+  "scrollflatHelp": {
+    "message": "ページのスクロール中や動画が動いている間は平面で表示し、止まって約 0.4 秒後に 3D に戻ります。オフにすると 3D が少し遅れて付いてきて、裂けたりちらついたりすることがあります。"
+  },
+  "subtitlesHelp": {
+    "message": "映像に焼き込まれた字幕を見つけて画面と同じ奥行きに置きます。文字がにじんだり二重に見えたりしません。"
+  },
+  "preset": {
+    "message": "シーンの種類"
+  },
+  "presetCustom": {
+    "message": "カスタム"
+  },
+  "presetMovie": {
+    "message": "実写（映画・ライブ）"
+  },
+  "presetAnime": {
+    "message": "アニメ"
+  },
+  "presetGame": {
+    "message": "ゲーム動画"
+  },
+  "presetPhoto": {
+    "message": "写真"
+  },
+  "presetHelp": {
+    "message": "実写は大部分を画面の奥に置きます（画面の端にかかった人が手前に出ると、枠で切れて見づらいため）。アニメは浅めで境界をやわらかく、ゲーム動画は少し深くくっきり、写真はいちばん深く精度「最高」で表示します（動画には使わないでください）。"
+  },
+  "presetSave": {
+    "message": "この種類に保存"
+  },
+  "presetRestore": {
+    "message": "既定値に戻す"
+  },
+  "presetChanged": {
+    "message": "値が変わりました。「この種類に保存」でこの値が残ります。保存しなければ、次に選んだとき前の値に戻ります。"
+  },
+  "presetSaved": {
+    "message": "保存した値を使っています（「既定値に戻す」で元の値に戻ります）。"
+  },
+  "statusOff": {
+    "message": "3D はオフです。"
+  },
+  "viewNotInVr": {
+    "message": "<b class=\"bad\">まだ 3D にできません</b>：Chrome のウィンドウが SteamVR にありません。SteamVR をオンにしてヘッドセット内で Chrome を起動してください。再試行中…"
+  },
+  "viewNoSteamVr": {
+    "message": "<b class=\"bad\">まだ 3D にできません</b>：SteamVR に接続できません。SteamVR が起動しているか確認してください。再試行中…"
+  },
+  "viewRestarting": {
+    "message": "SteamVR か画面が再起動したため、3D を戻しています…"
+  },
+  "viewFailed": {
+    "message": "<b class=\"bad\">まだ 3D にできません</b>：$ERROR$。再試行中…",
+    "placeholders": {
+      "ERROR": {
+        "content": "$1"
+      }
+    }
+  },
+  "problemModelStopped": {
+    "message": "<b class=\"bad\">問題</b>：奥行きモデルが止まり、平面のままです。奥行きの精度を「標準」にするか、コンパニオンを再起動してください（systemctl --user restart framedepth-companion）。"
+  },
+  "problemModelFails": {
+    "message": "<b class=\"bad\">問題</b>：奥行きモデルが失敗し続け、奥行きが止まっているかもしれません。奥行きの精度を「標準」にしてみてください。"
+  },
+  "problemNoModel": {
+    "message": "<b class=\"bad\">問題</b>：奥行きモデルが動いておらず、平面のままです。コンパニオンを再起動してください（systemctl --user restart framedepth-companion）。"
+  },
+  "problemGpu": {
+    "message": "<b class=\"bad\">問題</b>：GPU が 3D を描けませんでした。続くようならコンパニオンを再起動してください（systemctl --user restart framedepth-companion）。"
+  },
+  "detailRefused": {
+    "message": "<b class=\"bad\">奥行きの精度「$NAME$」を開始できません</b>：上に表示したモデルが代わりに動いています。",
+    "placeholders": {
+      "NAME": {
+        "content": "$1"
+      }
+    }
+  },
+  "version": {
+    "message": "拡張機能 $EXT$、コンパニオン $COMP$",
+    "placeholders": {
+      "EXT": {
+        "content": "$1"
+      },
+      "COMP": {
+        "content": "$2"
+      }
+    }
+  },
+  "viewRestartVr": {
+    "message": "<b class=\"bad\">まだ 3D にできません</b>：SteamVR か GPU が受け取れませんでした（$ERROR$）。SteamVR を再起動し、だめならコンパニオンも再起動してください（systemctl --user restart framedepth-companion）。再試行中…",
+    "placeholders": {
+      "ERROR": {
+        "content": "$1"
+      }
+    }
+  },
+  "helpTitle": {
+    "message": "設定の説明"
+  }
+}

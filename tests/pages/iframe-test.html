@@ -1,0 +1,16 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-only -->
+<!-- SPDX-FileCopyrightText: 2026 FrameDepth contributors -->
+<meta charset="utf-8">
+<title>FrameDepth iframe test</title>
+<!-- Top page for the extension's frame test: a small picture (should lose)
+     and a cross-origin iframe (localhost, the page 127.0.0.1) holding a 640x360
+     video at 20,30 inside it; the iframe's content box starts at 100,150.
+     Expected picture rectangle in top-page CSS px: 120,180 640x360. -->
+<style>
+  body { margin: 0; background: #fff; font: 14px system-ui; }
+  #pic { position: absolute; left: 820px; top: 20px; width: 360px; height: 240px; }
+  iframe { position: absolute; left: 100px; top: 150px; width: 700px; height: 420px; border: 0; padding: 0; }
+</style>
+<img id="pic" src="pic.svg">
+<iframe id="f" src="http://localhost:8731/tests/pages/iframe-video.html"></iframe>

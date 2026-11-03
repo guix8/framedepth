@@ -1,0 +1,274 @@
+{
+  "appName": {
+    "message": "FrameDepth"
+  },
+  "appDescription": {
+    "message": "Unofficial: real-time 3D for video and pictures in Chrome on Steam Frame. Needs the headset's framedepth-companion; data stays on the device."
+  },
+  "commandToggle": {
+    "message": "Turn 3D on or off"
+  },
+  "commandStrengthUp": {
+    "message": "More strength"
+  },
+  "commandStrengthDown": {
+    "message": "Less strength"
+  },
+  "commandPopoutUp": {
+    "message": "More pop-out"
+  },
+  "commandPopoutDown": {
+    "message": "Less pop-out"
+  },
+  "toggleOn": {
+    "message": "3D on"
+  },
+  "toggleOff": {
+    "message": "3D off"
+  },
+  "intro": {
+    "message": "When on, the largest video in view turns 3D (with no video, the main pictures of the page), inline, fullscreen or in an iframe. Shortcuts: Alt+Shift+D on/off, Alt+Shift+Up/Down strength; set more in chrome://extensions/shortcuts."
+  },
+  "strength": {
+    "message": "Strength"
+  },
+  "popout": {
+    "message": "Pop-out"
+  },
+  "smooth": {
+    "message": "Soft edges"
+  },
+  "sharpen": {
+    "message": "Sharpen"
+  },
+  "detail": {
+    "message": "Depth detail"
+  },
+  "detailNormal": {
+    "message": "Normal (recommended)"
+  },
+  "detailHigh": {
+    "message": "High (more CPU)"
+  },
+  "detailGpu": {
+    "message": "Highest (pictures)"
+  },
+  "detailHelp": {
+    "message": "Normal is best for video. High draws thin outlines a little sharper, but the headset runs hotter and 60 fps video can stutter. Highest is for pictures. On YouTube, 1080p is enough: higher only adds load."
+  },
+  "valueOff": {
+    "message": "off"
+  },
+  "help": {
+    "message": "Strength: how deep the 3D is, as the most each eye's picture is shifted (% of its width).\nPop-out: higher puts more in front of the screen, lower more behind (50 = half each way).\nSoft edges: higher means less smearing and tearing at object edges, but softer 3D borders.\nSharpen: brings back detail the conversion softens (0 = off).\nDepth detail: Normal for video. High has finer outlines but more load and heat. Highest uses the GPU and suits pictures (switching shows flat for a second or two).\nPlayer controls and captions drawn over the video are found and kept on the screen plane."
+  },
+  "companionConnected": {
+    "message": "Companion: <b class=\"ok\">connected</b> ($MODEL$)",
+    "placeholders": {
+      "MODEL": {
+        "content": "$1"
+      }
+    }
+  },
+  "companionError": {
+    "message": "Companion: <b class=\"bad\">error</b> $ERROR$. Restart it (systemctl --user restart framedepth-companion); if it goes on, install again (<a href=\"https://github.com/guix8/framedepth#troubleshooting\" target=\"_blank\">Troubleshooting</a>). Trying again in 10 s…",
+    "placeholders": {
+      "ERROR": {
+        "content": "$1"
+      }
+    }
+  },
+  "companionConnecting": {
+    "message": "Companion: connecting…"
+  },
+  "companionDisconnected": {
+    "message": "Companion: <b class=\"bad\">not connected</b>. Check that it is installed and running (<a href=\"https://github.com/guix8/framedepth#troubleshooting\" target=\"_blank\">Troubleshooting</a>)."
+  },
+  "companionBusy": {
+    "message": "Companion: <b class=\"bad\">in use</b> by another Chrome profile. Turn 3D off there or close it, and this one takes over within 10 s."
+  },
+  "companionIdle": {
+    "message": "Companion: waiting for a video or picture to turn 3D (a video at least 200×112, a picture about a fifth of the view, or several pictures)"
+  },
+  "viewProblem": {
+    "message": "<b class=\"bad\">Problem</b>: $PROBLEM$",
+    "placeholders": {
+      "PROBLEM": {
+        "content": "$1"
+      }
+    }
+  },
+  "statsVideo": {
+    "message": "Video $VIDEO$ fps, $FRAMES$ fps drawn in 3D (read $GRAB$ ms, draw $WARP$ ms)<br>Depth maps $MAPS$/s, model $MODEL$ ms, $AGE$ ms behind the video",
+    "placeholders": {
+      "VIDEO": {
+        "content": "$1"
+      },
+      "FRAMES": {
+        "content": "$2"
+      },
+      "GRAB": {
+        "content": "$3"
+      },
+      "WARP": {
+        "content": "$4"
+      },
+      "MAPS": {
+        "content": "$5"
+      },
+      "MODEL": {
+        "content": "$6"
+      },
+      "AGE": {
+        "content": "$7"
+      }
+    }
+  },
+  "stats": {
+    "message": "3D view $FPS$ fps (read $GRAB$ ms, draw $WARP$ ms)<br>Depth maps $MAPS$/s, model $MODEL$ ms, $AGE$ ms behind the video",
+    "placeholders": {
+      "FPS": {
+        "content": "$1"
+      },
+      "GRAB": {
+        "content": "$2"
+      },
+      "WARP": {
+        "content": "$3"
+      },
+      "MAPS": {
+        "content": "$4"
+      },
+      "MODEL": {
+        "content": "$5"
+      },
+      "AGE": {
+        "content": "$6"
+      }
+    }
+  },
+  "versionMismatch": {
+    "message": "<b class=\"bad\">Versions differ</b>: extension $EXT$, companion $COMP$. Reload FrameDepth in chrome://extensions; if they still differ, install again.",
+    "placeholders": {
+      "EXT": {
+        "content": "$1"
+      },
+      "COMP": {
+        "content": "$2"
+      }
+    }
+  },
+  "stereoSideBySide": {
+    "message": "3D video (side by side): shown as it is"
+  },
+  "stereoTopBottom": {
+    "message": "3D video (top and bottom): shown as it is"
+  },
+  "subtitles": {
+    "message": "Keep subtitles in the video flat"
+  },
+  "scrollflat": {
+    "message": "Flat while scrolling"
+  },
+  "scrollflatHelp": {
+    "message": "While the page scrolls or the video moves, the flat video shows; the 3D comes back about 0.4 s after it stops. Off: the 3D follows a little late and can tear or flicker."
+  },
+  "subtitlesHelp": {
+    "message": "Subtitles that are part of the picture are found and kept on the screen plane, so they do not blur or double."
+  },
+  "preset": {
+    "message": "Scene type"
+  },
+  "presetCustom": {
+    "message": "Custom"
+  },
+  "presetMovie": {
+    "message": "Film & live action"
+  },
+  "presetAnime": {
+    "message": "Animation"
+  },
+  "presetGame": {
+    "message": "Game video"
+  },
+  "presetPhoto": {
+    "message": "Photo"
+  },
+  "presetHelp": {
+    "message": "Live action keeps most of the picture behind the screen (a person cut by the frame edge who comes forward is uncomfortable to watch). Animation is shallower with softer edges, Game video a little deeper and sharper, Photo the deepest with Highest detail (not for video)."
+  },
+  "presetSave": {
+    "message": "Save to this type"
+  },
+  "presetRestore": {
+    "message": "Default"
+  },
+  "presetChanged": {
+    "message": "Changed. \"Save to this type\" keeps these values; unsaved, the type goes back to its earlier values next time."
+  },
+  "presetSaved": {
+    "message": "Uses your saved values (\"Default\" brings back the original ones)."
+  },
+  "statusOff": {
+    "message": "3D is off."
+  },
+  "viewNotInVr": {
+    "message": "<b class=\"bad\">No 3D yet</b>: Chrome's window is not in SteamVR. Start Chrome inside the headset with SteamVR on. Trying again…"
+  },
+  "viewNoSteamVr": {
+    "message": "<b class=\"bad\">No 3D yet</b>: cannot reach SteamVR. Check that it is running. Trying again…"
+  },
+  "viewRestarting": {
+    "message": "SteamVR or the display restarted: bringing the 3D back…"
+  },
+  "viewFailed": {
+    "message": "<b class=\"bad\">No 3D yet</b>: $ERROR$. Trying again…",
+    "placeholders": {
+      "ERROR": {
+        "content": "$1"
+      }
+    }
+  },
+  "problemModelStopped": {
+    "message": "<b class=\"bad\">Problem</b>: the depth model stopped, so the picture is flat. Set Depth detail to Normal, or restart the companion (systemctl --user restart framedepth-companion)."
+  },
+  "problemModelFails": {
+    "message": "<b class=\"bad\">Problem</b>: the depth model keeps failing, so the depth may be stuck. Try Depth detail Normal."
+  },
+  "problemNoModel": {
+    "message": "<b class=\"bad\">Problem</b>: no depth model is running, so the picture is flat. Restart the companion (systemctl --user restart framedepth-companion)."
+  },
+  "problemGpu": {
+    "message": "<b class=\"bad\">Problem</b>: the GPU could not draw the 3D. If it goes on, restart the companion (systemctl --user restart framedepth-companion)."
+  },
+  "detailRefused": {
+    "message": "<b class=\"bad\">Depth detail $NAME$ could not start</b>: the model named above runs instead.",
+    "placeholders": {
+      "NAME": {
+        "content": "$1"
+      }
+    }
+  },
+  "version": {
+    "message": "Extension $EXT$, companion $COMP$",
+    "placeholders": {
+      "EXT": {
+        "content": "$1"
+      },
+      "COMP": {
+        "content": "$2"
+      }
+    }
+  },
+  "viewRestartVr": {
+    "message": "<b class=\"bad\">No 3D yet</b>: SteamVR or the GPU did not take it ($ERROR$). Restart SteamVR; if that does not help, restart the companion too (systemctl --user restart framedepth-companion). Trying again…",
+    "placeholders": {
+      "ERROR": {
+        "content": "$1"
+      }
+    }
+  },
+  "helpTitle": {
+    "message": "What the settings do"
+  }
+}

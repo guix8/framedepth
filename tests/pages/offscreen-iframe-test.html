@@ -1,0 +1,18 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-only -->
+<!-- SPDX-FileCopyrightText: 2026 FrameDepth contributors -->
+<meta charset="utf-8">
+<title>FrameDepth off-screen iframe test</title>
+<!-- A picture in view (800x450 at 50,60) and, far below the fold, a frame
+     from localhost holding a playing 960x540 video (an ad's player). The
+     video counts double (2.9 times the picture) and would win on its own
+     frame's viewport, even over the picture holding the view; it is not
+     in view, so the picture must get the view: expected picture rectangle
+     in top-page CSS px: 50,60 800x450. -->
+<style>
+  body { margin: 0; height: 4000px; }
+  #big { position: absolute; left: 50px; top: 60px; width: 800px; height: 450px; }
+  iframe { position: absolute; left: 100px; top: 2500px; width: 1000px; height: 600px; border: 0; padding: 0; }
+</style>
+<img id="big" src="pic.svg">
+<iframe src="http://localhost:8731/tests/pages/big-video.html"></iframe>

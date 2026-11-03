@@ -1,0 +1,17 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-only -->
+<!-- SPDX-FileCopyrightText: 2026 FrameDepth contributors -->
+<meta charset="utf-8">
+<title>inner</title>
+<!-- The framed page: a 640x360 video (canvas stream) at 20,30 -->
+<style>
+  body { margin: 0; background: #ddd; }
+  video { position: absolute; left: 20px; top: 30px; width: 640px; height: 360px; }
+</style>
+<video id="v" muted autoplay></video>
+<script>
+  const c = document.createElement('canvas'); c.width = 640; c.height = 360;
+  const g = c.getContext('2d'); let f = 0;
+  setInterval(() => { g.fillStyle = `hsl(${f++ % 360},60%,50%)`; g.fillRect(0, 0, 640, 360); }, 50);
+  const v = document.getElementById('v'); v.srcObject = c.captureStream(20); v.play();
+</script>

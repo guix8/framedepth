@@ -1,0 +1,78 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-only -->
+<!-- SPDX-FileCopyrightText: 2026 FrameDepth contributors -->
+<meta charset="utf-8">
+<title>UI detect test</title>
+<!-- Checks content.js findUi() without the extension: the page loads the real
+     content.js text, takes pictureRect/findUi out of it and runs them on three
+     players fed by a canvas stream. Results go to window.results. -->
+<style>
+  body { font: 14px system-ui; margin: 16px; background: #fff; }
+  .case { margin: 0 0 24px; }
+  /* 1: Chrome's own controls */
+  /* 2: custom player: bar, big button, caption with pointer-events none */
+  .player { position: relative; width: 480px; height: 270px; background: #000; }
+  .player video { width: 100%; height: 100%; display: block; }
+  .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 40px; background: rgba(0,0,0,.6); display: flex; gap: 8px; align-items: center; padding: 0 8px; }
+  .bar button { width: 28px; height: 28px; }
+  .bar.hidden { opacity: 0; }
+  .caption { position: absolute; left: 140px; bottom: 56px; color: #fff; background: rgba(0,0,0,.5); pointer-events: none; padding: 2px 6px; }
+  .clickcatcher { position: absolute; inset: 0; }
+  /* 3: no player box: video in a wide column, overlay as a page-level sibling */
+  .column { width: 900px; }
+  .column video { width: 480px; height: 270px; display: block; }
+  .floating { position: absolute; width: 60px; height: 30px; background: #c00; color: #fff; }
+</style>
+<div class="case"><b>1 native</b><br><video id="v1" controls muted></video></div>
+<div class="case"><b>2 custom</b>
+  <div class="player" id="p2"><video id="v2" muted></video><div class="clickcatcher"></div>
+    <div class="caption">A caption line</div>
+    <div class="bar" id="bar"><button>▶</button><button>🔊</button><span style="color:#fff">0:12 / 3:00</span></div></div></div>
+<div class="case column"><b>3 no box</b><video id="v3" muted></video></div>
+<div class="floating" id="fl">LIVE</div>
+<script>
+(async () => {
+  const c = document.createElement('canvas'); c.width = 640; c.height = 360;
+  const g = c.getContext('2d'); let f = 0;
+  setInterval(() => { g.fillStyle = `hsl(${f++ % 360},60%,50%)`; g.fillRect(0, 0, 640, 360); }, 50);
+  for (const id of ['v1', 'v2', 'v3']) { const v = document.getElementById(id); v.srcObject = c.captureStream(20); await v.play(); }
+  const v3 = document.getElementById('v3').getBoundingClientRect();
+  const fl = document.getElementById('fl'); fl.style.left = (v3.left + scrollX + 10) + 'px'; fl.style.top = (v3.top + scrollY + 10) + 'px';
+  const src = await (await fetch('../../extension/content.js')).text();
+  const grab = (name) => src.slice(src.indexOf('  function ' + name), src.indexOf('\n  }\n', src.indexOf('  function ' + name)) + 4);
+  window.pointerMovedAt = -1e9;
+  (0, eval)(grab('pictureRect') + '\n' + grab('findUi') + '\nwindow.findUi = findUi; window.pictureRect = pictureRect;');
+  const run = (id) => { const v = document.getElementById(id); const t = performance.now(); const r = findUi(v);
+    return { ms: +(performance.now() - t).toFixed(2), pic: Object.values(pictureRect(v)).map(Math.round), covered: r.covered, rects: r.rects.map((o) => [o.x, o.y, o.w, o.h].map(Math.round)) }; };
+  await new Promise((r) => setTimeout(r, 300));
+  const out = {};
+  out.native_playing_idle = run('v1');
+  document.getElementById('v1').pause(); out.native_paused = run('v1');
+  out.custom_shown = run('v2');
+  document.getElementById('bar').classList.add('hidden'); out.custom_bar_hidden = run('v2');
+  out.nobox_overlay = run('v3');
+  // Page dialogs over the custom player (outside its box)
+  document.getElementById('p2').scrollIntoView({ block: 'center' });
+  await new Promise((r) => requestAnimationFrame(() => setTimeout(r, 50)));
+  const p2 = document.getElementById('p2').getBoundingClientRect();
+  const toast = document.createElement('div');
+  toast.textContent = 'Notice'; toast.style.cssText = `position:fixed;left:${p2.left + 20}px;top:${p2.top + 20}px;width:120px;height:40px;background:#333;color:#fff;z-index:10`;
+  document.body.append(toast);
+  out.page_toast = run('v2');
+  toast.remove();
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:10';
+  modal.innerHTML = '<div style="margin:100px auto;width:300px;height:150px;background:#fff">A dialog</div>';
+  document.body.append(modal);
+  out.page_modal = run('v2');
+  modal.remove();
+  const wrap = document.createElement('div');   // transparent full-page layer that paints nothing
+  wrap.style.cssText = 'position:fixed;inset:0;z-index:10';
+  document.body.append(wrap);
+  out.page_transparent_layer = run('v2');
+  wrap.remove();
+  out.page_none = run('v2');
+  window.results = out;
+  document.body.insertAdjacentHTML('beforeend', '<pre id="out">' + JSON.stringify(out, null, 1) + '</pre>');
+})();
+</script>

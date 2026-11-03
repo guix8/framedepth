@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# Licensing of files that cannot carry a comment (https://reuse.software)
+version = 1
+
+[[annotations]]
+path = ["models/zipdepth_672x384_fp16.tflite", "models/zipdepth_npu.ncnn.bin", "models/zipdepth_npu_512x288.ncnn.param", "models/zipdepth_npu_768x448.ncnn.param", "models/ZipDepth-LICENSE.txt"]
+SPDX-FileCopyrightText = "2026 Fabio Tosi"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = ["extension/manifest.json", "extension/_locales/**", "extension/icons/**", "tests/pages/pic.svg", "README*.md", "THIRD_PARTY.md", "SECURITY.md", "CHANGELOG.md", ".github/**", "docs/**", ".gitignore", ".gitattributes"]
+SPDX-FileCopyrightText = "2026 FrameDepth contributors"
+SPDX-License-Identifier = "GPL-3.0-only"
+
+# frames of Tears of Steel and FrameDepth's 3D of them (after docs/**, so this wins)
+[[annotations]]
+path = ["docs/images/depth-example.jpg", "docs/images/stereo-wiggle.gif"]
+SPDX-FileCopyrightText = "2012 Blender Foundation (Tears of Steel, mango.blender.org)"
+SPDX-License-Identifier = "CC-BY-3.0"

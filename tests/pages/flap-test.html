@@ -1,0 +1,25 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-only -->
+<!-- SPDX-FileCopyrightText: 2026 FrameDepth contributors -->
+<meta charset="utf-8">
+<title>FrameDepth flap test</title>
+<!-- YouTube-home-like churn (add ?keep for a video that stays): a grid of thumbnails, a hover-preview video that
+     appears for 1 s every 2 s over one of them, and the page scrolling up and
+     down. The 3D view should start once and stay up (no view off/on). -->
+<style> body { margin: 0; display: grid; grid-template-columns: repeat(3, 400px); gap: 16px; }
+  img { width: 400px; height: 225px; } video { position: absolute; left: 0; top: 0; width: 400px; height: 225px; } </style>
+<script>
+  document.write('<img src="pic.svg">'.repeat(24));
+  const c = document.createElement('canvas'); c.width = 640; c.height = 360;
+  const g = c.getContext('2d'); let f = 0;
+  setInterval(() => { g.fillStyle = `hsl(${f++ % 360},60%,50%)`; g.fillRect(0, 0, 640, 360); }, 50);
+  const v = document.createElement('video'); v.muted = true; v.srcObject = c.captureStream(20);
+  const flap = setInterval(() => { if (v.isConnected) v.remove(); else { document.body.append(v); v.play(); } }, 1000);
+  let dir = 1; const scroll = setInterval(() => { scrollBy(0, 60 * dir); if (scrollY > 900 || scrollY <= 0) dir = -dir; }, 200);
+  // ?keep: after 6 s a large video stays (someone starts watching): the
+  // view should switch to it once, without view off/on
+  if (location.search.includes('keep')) setTimeout(() => {
+    clearInterval(flap); clearInterval(scroll); scrollTo(0, 0);
+    v.style.width = '1000px'; v.style.height = '562px'; document.body.append(v); v.play();
+  }, 6000);
+</script>

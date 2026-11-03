@@ -1,0 +1,35 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-only -->
+<!-- SPDX-FileCopyrightText: 2026 FrameDepth contributors -->
+<!-- A muted video playing in a loop, for the live tests: ?src=FILE&w=PERCENT_OF_WINDOW_WIDTH (default 80); &full=1 fills the window -->
+<meta charset="utf-8">
+<title>FrameDepth video test</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #222; color: #ccc; font: 14px sans-serif; }
+  body { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  video { display: block; max-height: 85vh; }
+  video.full { position: fixed; inset: 0; width: 100vw !important; height: 100vh; max-height: none; object-fit: contain; background: #000; }
+</style>
+<p id="what"></p>
+<video id="v" muted loop autoplay playsinline></video>
+<script>
+  const q = new URLSearchParams(location.search);
+  const v = document.getElementById('v');
+  v.style.width = Number(q.get('w') || 80) + 'vw';
+  v.src = q.get('src') || '';
+  if (q.get('full') === '1') v.className = 'full';
+  document.getElementById('what').textContent = v.src;
+  v.play().catch(() => {});
+  // Chrome's own presentation of the video's frames (requestVideoFrameCallback):
+  // the gaps between them, for telling Chrome's unevenness from ours
+  // (window.fdPresented, read by drive_chrome.py at the end)
+  const gaps = []; let last = 0;
+  const onFrame = (now, m) => { if (last) gaps.push(m.presentationTime - last); last = m.presentationTime; v.requestVideoFrameCallback(onFrame); };
+  v.requestVideoFrameCallback(onFrame);
+  window.fdPresented = () => {
+    const g = gaps.slice(60).sort((a, b) => a - b), at = (q) => g.length ? +g[Math.min(g.length - 1, Math.floor(q * g.length))].toFixed(1) : 0;
+    const frame = g.length ? at(0.5) : 0;
+    return { frames: g.length, median: at(0.5), p95: at(0.95), worst: g.length ? +g[g.length - 1].toFixed(1) : 0,
+             over: g.filter((x) => x > 1.5 * frame).length, under: g.filter((x) => x < 0.5 * frame).length };
+  };
+</script>

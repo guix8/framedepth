@@ -1,0 +1,14 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-only -->
+<!-- SPDX-FileCopyrightText: 2026 FrameDepth contributors -->
+<meta charset="utf-8">
+<title>FrameDepth bordered iframe test</title>
+<!-- A frame from localhost (another origin) at 100,150 with a 5 px border
+     and 7 px padding, so its content box starts at 112,162; iframe-video.html
+     in it has the 640x360 video at 20,30. Expected picture rectangle in
+     top-page CSS px: 132,192 640x360. -->
+<style>
+  body { margin: 0; background: #fff; }
+  iframe { position: absolute; left: 100px; top: 150px; width: 700px; height: 420px; border: 5px solid #888; padding: 7px; }
+</style>
+<iframe src="http://localhost:8731/tests/pages/iframe-video.html"></iframe>

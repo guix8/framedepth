@@ -1,0 +1,16 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-only -->
+<!-- SPDX-FileCopyrightText: 2026 FrameDepth contributors -->
+<meta charset="utf-8">
+<title>FrameDepth nested iframe test</title>
+<!-- A video two frames deep: this page (127.0.0.1) holds a frame from
+     localhost (another origin) at 100,150, which holds iframe-video.html from
+     127.0.0.1 at 50,40, with the 640x360 video at 20,30 in it. Expected
+     picture rectangle in top-page CSS px: 170,220 640x360; the regression
+     run scrolls the page 300 px down 7 s in, long after the view started,
+     which leaves 170,0 640x280 in view. -->
+<style>
+  body { margin: 0; height: 3000px; background: #fff; }
+  iframe { position: absolute; left: 100px; top: 150px; width: 760px; height: 480px; border: 0; padding: 0; }
+</style>
+<iframe src="http://localhost:8731/tests/pages/nested-middle.html"></iframe>
