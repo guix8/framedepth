@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.36
+
+- Popup: the paragraph under the version line is gone (what turns 3D and the
+  shortcuts are in "What the settings do"); the scene type shows only the
+  chosen type's description
+
 ## 0.6.35 — first public release
 
 - Turns the largest video in view in Chrome on the Steam Frame into 3D, in

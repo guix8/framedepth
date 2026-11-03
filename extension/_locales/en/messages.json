@@ -26,9 +26,6 @@
   "toggleOff": {
     "message": "3D off"
   },
-  "intro": {
-    "message": "When on, the largest video in view turns 3D (with no video, the main pictures of the page), inline, fullscreen or in an iframe. Shortcuts: Alt+Shift+D on/off, Alt+Shift+Up/Down strength; set more in chrome://extensions/shortcuts."
-  },
   "strength": {
     "message": "Strength"
   },
@@ -60,7 +57,7 @@
     "message": "off"
   },
   "help": {
-    "message": "Strength: how deep the 3D is, as the most each eye's picture is shifted (% of its width).\nPop-out: higher puts more in front of the screen, lower more behind (50 = half each way).\nSoft edges: higher means less smearing and tearing at object edges, but softer 3D borders.\nSharpen: brings back detail the conversion softens (0 = off).\nDepth detail: Normal for video. High has finer outlines but more load and heat. Highest uses the GPU and suits pictures (switching shows flat for a second or two).\nPlayer controls and captions drawn over the video are found and kept on the screen plane."
+    "message": "What turns 3D: the largest video in view; with no video, a large picture, or the pictures of a list or gallery.\nStrength: how deep the 3D is, as the most each eye's picture is shifted (% of its width).\nPop-out: higher puts more in front of the screen, lower more behind (50 = half each way).\nSoft edges: higher means less smearing and tearing at object edges, but softer 3D borders.\nSharpen: brings back detail the conversion softens (0 = off).\nDepth detail: Normal for video. High has finer outlines but more load and heat. Highest uses the GPU and suits pictures (switching shows flat for a second or two).\nPlayer controls and captions drawn over the video are found and kept on the screen plane.\nShortcuts: Alt+Shift+D turns 3D on or off, Alt+Shift+Up/Down changes the strength while 3D is on; keys for pop-out can be set in chrome://extensions/shortcuts."
   },
   "companionConnected": {
     "message": "Companion: <b class=\"ok\">connected</b> ($MODEL$)",
@@ -194,8 +191,17 @@
   "presetPhoto": {
     "message": "Photo"
   },
-  "presetHelp": {
-    "message": "Live action keeps most of the picture behind the screen (a person cut by the frame edge who comes forward is uncomfortable to watch). Animation is shallower with softer edges, Game video a little deeper and sharper, Photo the deepest with Highest detail (not for video)."
+  "presetHelpMovie": {
+    "message": "For films, dramas and concerts. Most of the picture sits behind the screen, so people cut by the frame edge do not come forward."
+  },
+  "presetHelpAnime": {
+    "message": "For animation. Shallower depth and softer edges, so clean lines do not tear."
+  },
+  "presetHelpGame": {
+    "message": "For game streams and videos. A little deeper and sharper than live action."
+  },
+  "presetHelpPhoto": {
+    "message": "For pictures. The most depth, with Highest detail. Not for video: it can stutter."
   },
   "presetSave": {
     "message": "Save to this type"

@@ -19,6 +19,9 @@ function render(s) {
   // a scene type: save the values as it, or bring back its own
   const typed = s.preset in PRESETS, saved = typed && !!s.presetEdits[s.preset];
   $('presetTools').hidden = !typed;
+  // what the chosen type is for (Custom: nothing)
+  $('presetHelp').hidden = !typed;
+  $('presetHelp').textContent = typed ? t(PRESET_HELP[s.preset]) : '';
   $('presetSave').disabled = !s.presetChanged;
   $('presetRestore').disabled = !(s.presetChanged || saved);
   $('presetNote').hidden = !typed || !(s.presetChanged || saved);
@@ -165,6 +168,7 @@ const PRESETS = {
   photo: { strength: 1.5, popout: 50, smooth: 2, sharpen: 0.4, detail: 1 },
 };
 const PRESET_KEYS = ['strength', 'popout', 'smooth', 'sharpen', 'detail'];
+const PRESET_HELP = { movie: 'presetHelpMovie', anime: 'presetHelpAnime', game: 'presetHelpGame', photo: 'presetHelpPhoto' };
 const presetValues = (p, s) => ({ ...PRESETS[p], ...(s.presetEdits[p] || {}) });
 // Custom keeps its own values: they are kept when a scene type is chosen and
 // come back with Custom (a type's values overwrote them for good; review
