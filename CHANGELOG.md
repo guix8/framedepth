@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.37
+
+- Steam launcher: the Chrome window follows the screen Steam gives the app.
+  1920×1080 at 150% only on a 1080-line screen; on the 1280×720 screen of the
+  SteamOS 0.5 beta it stays 1280×720 at 100%, since a larger window left a
+  third of it out of the laser's reach
+
 ## 0.6.36
 
 - Popup: the paragraph under the version line is gone (what turns 3D and the

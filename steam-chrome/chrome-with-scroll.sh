@@ -8,15 +8,23 @@
 
 DIR="$(dirname "$(readlink -f "$0")")"
 
-# Added to Chrome's arguments. gamescope opens an app from Steam at 1280x720:
-# this makes the window the output's 1920x1080, with a scale of 1.5 so text
-# is as large as at 720p but drawn with 1.5 times the pixels.
-# --window-size is the size before the scale, so 1280x720 gives a 1920x1080
-# window.
+# Added to Chrome's arguments: a window as large as the screen gamescope
+# gives the app, with text as large as at 720p. Chrome opens at 1280x720,
+# scale 1. On a 1920x1080 screen (SteamOS 0.4) that makes a 1920x1080 window
+# at scale 1.5: the same text drawn with 1.5 times the pixels. The window
+# must not be larger than the screen: the pointer stays inside the screen,
+# and on the 1280x720 screen of the SteamOS 0.5 beta a 1920x1080 window left
+# a third of it out of the laser's reach (2026-11-05); there it stays at
+# scale 1. --window-size is the size before the scale.
+scale=1.5
+height=$(xdpyinfo -display "${DISPLAY:-:1}" 2>/dev/null | sed -n 's/^ *dimensions: *[0-9]*x\([0-9]*\) pixels.*/\1/p')
+if [ -n "$height" ]; then
+    scale=$(awk -v h="$height" 'BEGIN { s = h / 720; if (s < 1) s = 1; printf "%.4g", s }')
+fi
 CHROME_EXTRA_ARGS=(
     --window-size=1280,720
     --window-position=0,0
-    --force-device-scale-factor=1.5
+    --force-device-scale-factor="$scale"
 )
 
 # Right after the Flatpak app ID: the @@u @@ that follow are Flatpak's file

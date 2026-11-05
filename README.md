@@ -151,7 +151,10 @@ FrameDepth does both:
 - **Window size:** Steam opens a 1280×720 window. A 1920×1080 window at 150%
   keeps the layout and text size with 1.5 times the pixels: sharper text, and
   2.25 times the pixels for the 3D (a YouTube player in a page went from
-  859×483 to 1289×725).
+  859×483 to 1289×725). The launcher does this only when Steam gives the app
+  a 1920×1080 screen: on the SteamOS 0.5 beta it is 1280×720, and a larger
+  window would leave part of it out of the laser's reach, so Chrome stays at
+  1280×720 and 100% there.
 - **Scrolling:** the thumbstick's scrolling mostly never reaches the page. The
   laser and the scrolling come in as two input devices, and Chrome drops the
   scrolling each time they switch. A small helper sends it again, only while
