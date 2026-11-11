@@ -126,6 +126,7 @@ Steam から起動した Chrome には直すところが 2 つあり、FrameDept
   systemctl --user status framedepth-companion --no-pager
   systemctl --user restart framedepth-companion
   ```
+- 「Failed to connect to user scope bus」（インストール時や上の `systemctl` で）：シェルにログインセッションがない場合で、`su` や `sudo -u` の後に起きます。ヘッドセットにログインしているアカウントのターミナルを開くか、先に `export XDG_RUNTIME_DIR=/run/user/$(id -u)` を実行してから、もう一度 `install.sh` を実行してください。
 - 「バージョンが違います」：`chrome://extensions` で FrameDepth を再読み込みします。
 - 「Chrome のウィンドウが SteamVR にありません」：3D は、SteamVR をオンにしたヘッドセットの中で動く Chrome（ダッシュボードまたは Steam ライブラリから起動）の上にだけ表示されます。デスクトップや外部ディスプレイでは表示されません。
 - 「別の Chrome プロファイルが使用中」：一度に使えるのは 1 つのプロファイルだけです。もう一方で 3D をオフにするか、閉じてください。

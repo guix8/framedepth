@@ -126,6 +126,7 @@ Steam에서 실행한 Chrome은 두 가지를 손봐야 하는데, FrameDepth와
   systemctl --user status framedepth-companion --no-pager
   systemctl --user restart framedepth-companion
   ```
+- *"Failed to connect to user scope bus"*(설치할 때나 위 `systemctl` 명령에서): 셸에 로그인 세션이 없는 경우로, `su`나 `sudo -u` 뒤에 생깁니다. 헤드셋에 로그인된 계정의 터미널을 열거나, 먼저 `export XDG_RUNTIME_DIR=/run/user/$(id -u)`를 실행한 뒤 `install.sh`를 다시 실행합니다.
 - *버전이 다름*: `chrome://extensions`에서 FrameDepth를 새로고침합니다.
 - *Chrome 창이 SteamVR에 없음*: 3D는 SteamVR이 켜진 헤드셋 안의 Chrome(대시보드나 Steam 라이브러리에서 실행)에만 나옵니다. 데스크톱이나 외부 화면에서는 나오지 않습니다.
 - *다른 Chrome 프로필이 사용 중*: 한 번에 한 프로필만 쓸 수 있습니다. 다른 쪽에서 3D를 끄거나 창을 닫습니다.

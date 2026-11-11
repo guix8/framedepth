@@ -76,6 +76,20 @@ if [[ ! -d $src/app ]]; then
   src="$tmp/release"
 fi
 [[ -x $src/app/framedepth-companion ]] || { echo "$src/app/framedepth-companion is missing" >&2; exit 1; }
+# systemctl --user needs the login session's bus. A shell reached through su or
+# without a login session lacks these two, so fill them in from the session
+# folder when it exists.
+runtime=/run/user/$(id -u)
+: "${XDG_RUNTIME_DIR:=$runtime}"
+[[ -n ${DBUS_SESSION_BUS_ADDRESS:-} || ! -S $XDG_RUNTIME_DIR/bus ]] || DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
+export XDG_RUNTIME_DIR
+[[ -z ${DBUS_SESSION_BUS_ADDRESS:-} ]] || export DBUS_SESSION_BUS_ADDRESS
+if ! systemctl --user show-environment >/dev/null 2>&1; then
+  echo 'Cannot reach your systemd user session (the "user scope bus").' >&2
+  echo 'Run this in a terminal of the account that is logged in on the headset' >&2
+  echo '(for SteamOS usually steamos, or deck), without su or sudo, then try again.' >&2
+  exit 1
+fi
 systemctl --user stop framedepth-companion.service 2>/dev/null || true
 rm -rf -- "$dest" "$ext"
 mkdir -p "$dest" "$ext" "$unit_dir"

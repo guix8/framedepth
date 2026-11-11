@@ -191,6 +191,11 @@ does not start, and how it is running.
   systemctl --user status framedepth-companion --no-pager
   systemctl --user restart framedepth-companion
   ```
+- *"Failed to connect to user scope bus"* (while installing, or on the
+  `systemctl` lines above): the shell has no login session, which happens
+  after `su` or `sudo -u`. Open a terminal as the account that is logged in on
+  the headset, or run `export XDG_RUNTIME_DIR=/run/user/$(id -u)` first, then
+  run `install.sh` again.
 - *Versions differ*: reload FrameDepth in `chrome://extensions`.
 - *Chrome's window is not in SteamVR*: the 3D shows only over Chrome running
   in the headset with SteamVR on (from the dashboard or Steam's library), not

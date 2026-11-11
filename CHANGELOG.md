@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- install.sh: finds the systemd user session itself when the shell has no
+  login session (after `su`), and otherwise stops before changing anything
+  with a message, instead of failing with "Failed to connect to user scope
+  bus"; README Troubleshooting covers it
+
 ## 0.6.37
 
 - Steam launcher: the Chrome window follows the screen Steam gives the app.
