@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.6.38
 
 - install.sh: finds the systemd user session itself when the shell has no
   login session (after `su`), and otherwise stops before changing anything
