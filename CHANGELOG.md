@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.6.39
 
 - install.sh: checks at the end that the companion service is enabled and
   running, so it also starts after a reboot (issue #1); README
