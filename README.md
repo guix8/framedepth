@@ -186,9 +186,11 @@ Set it up once:
 The top of the popup shows whether the companion is connected, why the 3D
 does not start, and how it is running.
 
-- *Not connected*: the companion is not running. Check it and start it again:
+- *Not connected*: the companion is not running. Check it, then turn it on so
+  it also starts after a reboot:
   ```bash
   systemctl --user status framedepth-companion --no-pager
+  systemctl --user enable --now framedepth-companion
   systemctl --user restart framedepth-companion
   ```
 - *"Failed to connect to user scope bus"* (while installing, or on the

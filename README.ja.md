@@ -121,9 +121,10 @@ Steam から起動した Chrome には直すところが 2 つあり、FrameDept
 
 ポップアップの一番上に、接続状態、3D が表示されない理由、動作の数値が出ます。
 
-- 「未接続」：コンパニオンが動いていません。状態を確認して、もう一度起動します。
+- 「未接続」：コンパニオンが動いていません。状態を確認し、再起動後も起動するように有効にして起動します。
   ```bash
   systemctl --user status framedepth-companion --no-pager
+  systemctl --user enable --now framedepth-companion
   systemctl --user restart framedepth-companion
   ```
 - 「Failed to connect to user scope bus」（インストール時や上の `systemctl` で）：シェルにログインセッションがない場合で、`su` や `sudo -u` の後に起きます。ヘッドセットにログインしているアカウントのターミナルを開くか、先に `export XDG_RUNTIME_DIR=/run/user/$(id -u)` を実行してから、もう一度 `install.sh` を実行してください。

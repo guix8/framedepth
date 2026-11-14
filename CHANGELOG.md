@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- install.sh: checks at the end that the companion service is enabled and
+  running, so it also starts after a reboot (issue #1); README
+  Troubleshooting: *Not connected* turns the service on with
+  `systemctl --user enable --now`
+
 ## 0.6.38
 
 - install.sh: finds the systemd user session itself when the shell has no

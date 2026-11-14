@@ -121,9 +121,10 @@ Steam에서 실행한 Chrome은 두 가지를 손봐야 하는데, FrameDepth와
 
 팝업 맨 위에 연결 상태, 3D가 뜨지 않는 이유, 동작 수치가 나옵니다.
 
-- *연결 안 됨*: 동반 프로그램이 돌고 있지 않습니다. 상태를 보고 다시 시작합니다.
+- *연결 안 됨*: 동반 프로그램이 돌고 있지 않습니다. 상태를 보고, 재부팅 뒤에도 켜지도록 등록하며 시작합니다.
   ```bash
   systemctl --user status framedepth-companion --no-pager
+  systemctl --user enable --now framedepth-companion
   systemctl --user restart framedepth-companion
   ```
 - *"Failed to connect to user scope bus"*(설치할 때나 위 `systemctl` 명령에서): 셸에 로그인 세션이 없는 경우로, `su`나 `sudo -u` 뒤에 생깁니다. 헤드셋에 로그인된 계정의 터미널을 열거나, 먼저 `export XDG_RUNTIME_DIR=/run/user/$(id -u)`를 실행한 뒤 `install.sh`를 다시 실행합니다.

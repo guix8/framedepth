@@ -112,6 +112,17 @@ WantedBy=default.target
 EOF
 systemctl --user daemon-reload
 systemctl --user enable --now framedepth-companion.service
+# enabled, or it is off again after the next reboot (issue 1)
+if ! systemctl --user is-enabled --quiet framedepth-companion.service; then
+  echo 'The companion service is not enabled, so it would not start after a reboot.' >&2
+  echo 'Run: systemctl --user enable --now framedepth-companion' >&2; exit 1
+fi
+sleep 1
+if ! systemctl --user is-active --quiet framedepth-companion.service; then
+  echo 'The companion service did not start. Its log:' >&2
+  journalctl --user -u framedepth-companion -n 20 --no-pager >&2 || true
+  exit 1
+fi
 echo "Installed $("$dest/framedepth-companion" --version) in $dest and the extension in $ext"
 echo 'Load the extension once: chrome://extensions -> Developer mode -> Load unpacked -> Downloads/framedepth-extension'
 echo '(keep that folder: Chrome runs FrameDepth from it)'
